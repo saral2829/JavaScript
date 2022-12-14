@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>Transporte</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="formCtrl" class="container m-4 p-4">
+        <!-- {{ firstName+ " " +lastName}} -->
+    <!-- <p>nombre: <input type="text" ng-model="name"></p>
+    <p> {{name}} </p> -->
+        <form action="" >
+        Código:<br> <input type="text" name="" id="" ng-model="codigo">
+        <br>
+        Numero de Horas:  <input type="number " ng-model="numHoras">
+        <br>
+        Tarifa por Hora: <br>
+        <input type="number " ng-model="tarifas">
+
+
+        </form>
+    <p>{{codigo}}</p>
+    <p>Sueldo Basico : {{CalcularSueldo()}}</p>
+    <p>Descuento: {{descuento()}}</p>
+    <p>Sueldo Neto: {{calcularNeto()}}</p>   
+    </div>
+    <script>
+        let app =angular.module("myApp",[])
+
+        app.controller("formCtrl", function($scope){
+            $scope.codigo=0  
+            $scope.numHoras=0
+            $scope.tarifas=0
+            $scope.CalcularSueldo=function(){
+                return $scope.numHoras*$scope.tarifas
+            }
+           
+
+            $scope.descuento=function(){
+             if ($scope.CalcularSueldo()<500){
+                    return $scope.CalcularSueldo()
+                }else if($scope.CalcularSueldo()>=501 && $scope.CalcularSueldo()<=1000){
+                    return ($scope.CalcularSueldo())*0.02
+                }else if($scope.CalcularSueldo()>=1001 && $scope.CalcularSueldo()<=4000){
+                    return ($scope.CalcularSueldo())*0.08
+                }else if($scope.CalcularSueldo()>=4001 && $scope.CalcularSueldo()<=8000){
+                    return ($scope.CalcularSueldo())*0.15
+                }else if($scope.CalcularSueldo()>=8001 && $scope.CalcularSueldo()<=10000){
+                    return ($scope.CalcularSueldo())*0.21
+                }else{
+                    return ($scope.CalcularSueldo())*0.30
+                }
+            
+            }
+
+            $scope.calcularNeto=function(){
+                return $scope.CalcularSueldo()+$scope.descuento()
+            }
+
+           
+
+        })
+    </script>
+</body>
+</html>
